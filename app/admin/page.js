@@ -76,7 +76,7 @@ const AdminPage = () => {
   return (
     <main className={styles.main}>
       <Toaster />
-      <h1 className={styles.heading}>Help Desk</h1>
+      <h1 className={styles.heading}>Help Desk Admin</h1>
       <TicketForm
         ticketId={ticketId}
         initialData={initialData}
