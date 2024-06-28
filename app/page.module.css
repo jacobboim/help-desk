@@ -74,7 +74,7 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 10px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1220px;
 }
 
 .card {
@@ -84,7 +84,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  height: 230px;
+  height: 340px;
 }
 
 .statusNew {
@@ -128,10 +128,15 @@
 }
 
 .description {
+  max-height: 80px; /* Max height before scrolling */
+  overflow-y: auto; /* Enable vertical scroll */
+  word-wrap: break-word; /* Wrap long words */
+}
+
+.answer {
   max-height: 100px; /* Max height before scrolling */
   overflow-y: auto; /* Enable vertical scroll */
   word-wrap: break-word; /* Wrap long words */
-  /* hyphens: auto;  */
 }
 
 .filterContainer {
@@ -209,7 +214,7 @@
 
 .skeletonBox {
   width: 400px; /* Default width for desktop */
-  height: 230px; /* Height */
+  /* height: 230px; Height */
 }
 
 @media (max-width: 768px) {

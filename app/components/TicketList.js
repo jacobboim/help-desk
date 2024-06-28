@@ -47,8 +47,10 @@ const TicketList = ({ tickets, onEdit }) => {
                 <p>Email: {ticket.email}</p>
                 <div className={styles.description}>
                   <p>Description: {ticket.description}</p>
-                  {ticket.answer && <p>Answer: {ticket.answer}</p>}
                 </div>
+                {ticket.answer && (
+                  <p className={styles.answer}>Answer: {ticket.answer}</p>
+                )}
               </div>
               {onEdit && (
                 <div className={styles.editButtonContainer}>
