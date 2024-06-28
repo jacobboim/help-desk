@@ -195,7 +195,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  gap: 50px;
+  gap: 10px;
 }
 
 .editButtonContainer {
@@ -205,6 +205,11 @@
   gap: 10px;
   width: 100%;
   align-items: center;
+}
+
+.skeletonBox {
+  width: 400px; /* Default width for desktop */
+  height: 230px; /* Height */
 }
 
 @media (max-width: 768px) {
@@ -221,5 +226,12 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+  .skeletonWrapper {
+    flex-direction: column;
+  }
+
+  .skeletonBox {
+    width: 200px; /* Width for mobile */
   }
 }
