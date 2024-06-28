@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../page.module.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { isMobile } from "react-device-detect";
+import { isMobile, MobileView } from "react-device-detect";
 const TicketList = ({ tickets, onEdit }) => {
   const [showSkeleton, setShowSkeleton] = useState(true); // State to control skeleton visibility
 
@@ -27,13 +27,24 @@ const TicketList = ({ tickets, onEdit }) => {
 
   return (
     <>
-      {showSkeleton && (
+      <MobileView>
+        {showSkeleton && (
+          <div className={styles.skeletonWrapper}>
+            <Skeleton count={1} width={320} height={230} />
+            <Skeleton count={1} width={320} height={230} />
+            <Skeleton count={1} width={320} height={230} />
+          </div>
+        )}
+      </MobileView>
+
+      {showSkeleton && !isMobile && (
         <div className={styles.skeletonWrapper}>
           <Skeleton count={1} width={skeletonWidth} height={230} />
           <Skeleton count={1} width={skeletonWidth} height={230} />
           <Skeleton count={1} width={skeletonWidth} height={230} />
         </div>
       )}
+
       <div className={styles.cardContainer}>
         {!showSkeleton &&
           tickets.map((ticket) => (
