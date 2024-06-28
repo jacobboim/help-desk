@@ -43,13 +43,13 @@
 
 .textarea {
   width: 100%;
-  height: 100px; /* Set a fixed height */
+  height: 100px;
   padding: 0.5rem;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  resize: none; /* Disable resizing */
+  resize: none;
 }
 
 .button {
@@ -94,7 +94,7 @@
   border-radius: 4px;
   font-size: 0.75rem;
   text-transform: uppercase;
-  align-self: flex-end; /* Align status to bottom right */
+  align-self: flex-end;
 }
 
 .statusInProgress {
@@ -104,7 +104,7 @@
   border-radius: 4px;
   font-size: 0.75rem;
   text-transform: uppercase;
-  align-self: flex-end; /* Align status to bottom right */
+  align-self: flex-end;
 }
 
 .statusResolved {
@@ -114,7 +114,7 @@
   border-radius: 4px;
   font-size: 0.75rem;
   text-transform: uppercase;
-  align-self: flex-end; /* Align status to bottom right */
+  align-self: flex-end;
 }
 
 .cardHeader {
@@ -123,20 +123,20 @@
 }
 
 .cardBody {
-  flex-grow: 1; /* Take remaining space */
-  overflow: hidden; /* Hide overflow from expanding card height */
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .description {
-  max-height: 80px; /* Max height before scrolling */
-  overflow-y: auto; /* Enable vertical scroll */
-  word-wrap: break-word; /* Wrap long words */
+  max-height: 80px;
+  overflow-y: auto;
+  word-wrap: break-word;
 }
 
 .answer {
-  max-height: 100px; /* Max height before scrolling */
-  overflow-y: auto; /* Enable vertical scroll */
-  word-wrap: break-word; /* Wrap long words */
+  max-height: 100px;
+  overflow-y: auto;
+  word-wrap: break-word;
 }
 
 .filterContainer {
@@ -205,7 +205,6 @@
 
 .editButtonContainer {
   display: flex;
-  /* flex-direction: row; */
   flex-direction: column;
   gap: 10px;
   width: 100%;
@@ -213,8 +212,7 @@
 }
 
 .skeletonBox {
-  width: 400px; /* Default width for desktop */
-  /* height: 230px; Height */
+  width: 400px;
 }
 
 @media (max-width: 768px) {
@@ -237,6 +235,13 @@
   }
 
   .skeletonBox {
-    width: 200px; /* Width for mobile */
+    width: 200px;
+  }
+
+  .description {
+    max-height: 180px;
+  }
+  .answer {
+    max-height: 100px;
   }
 }
