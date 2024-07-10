@@ -85,6 +85,14 @@ body {
   overflow-x: hidden;
 }
 
+/* globals.css */
+input,
+textarea,
+select,
+button {
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile */
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

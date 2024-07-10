@@ -392,15 +392,6 @@
     max-height: 100px;
   }
 
-  /* page.module.css or your custom CSS file */
-  input,
-  textarea,
-  select,
-  button {
-    font-size: 16px; /* Set a standard font size */
-    -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile */
-  }
-
   .modalContent {
     width: 100%;
   }
