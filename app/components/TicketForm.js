@@ -53,9 +53,21 @@ const TicketForm = ({ ticketId, initialData, onSubmit }) => {
         .then(() => {
           setName("");
           setEmail("");
+          //   setDescription("");
+          //   toast.success("Ticket created successfully!");
+          //   onSubmit();
+          // })
           setDescription("");
           toast.success("Ticket created successfully!");
           onSubmit();
+          // Store or update email in localStorage array
+          const storedEmails =
+            JSON.parse(localStorage.getItem("userEmails")) || [];
+          if (!storedEmails.includes(email)) {
+            storedEmails.push(email);
+            localStorage.setItem("userEmails", JSON.stringify(storedEmails));
+          }
+          onSubmit(); // Call again after updating localStorage
         })
         .catch((error) => {
           console.error("Error adding ticket: ", error);
