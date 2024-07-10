@@ -93,6 +93,25 @@ button {
   -webkit-text-size-adjust: 100%; /* Prevent font scaling on mobile */
 }
 
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* globals.css or any global CSS file */
+@supports (-webkit-touch-callout: none) {
+  /* iOS WebKit-specific CSS */
+  input,
+  textarea,
+  select,
+  button {
+    -webkit-text-size-adjust: 100%; /* Prevent font scaling */
+    touch-action: manipulation; /* Improve touch interactions */
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
