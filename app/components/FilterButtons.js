@@ -8,13 +8,17 @@ const FilterButtons = ({ selectedFilter, setSelectedFilter }) => {
     return selectedFilter === filter ? styles.selectedFilter : styles.filter;
   };
 
+  const handleFilterClick = (filter) => {
+    setSelectedFilter(filter);
+  };
+
   return (
     <div className={styles.filterContainer}>
       {["All", "New", "In Progress", "Resolved"].map((filter) => (
         <button
           key={filter}
           className={filterStyles(filter)}
-          onClick={() => setSelectedFilter(filter)}
+          onClick={() => handleFilterClick(filter)}
         >
           {filter}
         </button>

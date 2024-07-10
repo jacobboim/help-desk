@@ -9,7 +9,7 @@ import { database } from "../firebaseConfig";
 
 const TicketForm = ({ ticketId, initialData, onSubmit }) => {
   const [name, setName] = useState(initialData?.name || "");
-  const [email, setEmail] = useState(initialData?.email || "");
+  const [email, setEmail] = useState("");
   const [description, setDescription] = useState(
     initialData?.description || ""
   );
@@ -24,7 +24,21 @@ const TicketForm = ({ ticketId, initialData, onSubmit }) => {
     }
   }, [initialData]);
 
+  const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   const handleData = () => {
+    if (!name || !email || !description) {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      toast.error("Please enter a valid email address!");
+      return;
+    }
     if (!ticketId && !initialData) {
       const newTicketData = {
         name: name,
@@ -72,6 +86,13 @@ const TicketForm = ({ ticketId, initialData, onSubmit }) => {
           toast.error("Error updating ticket!");
         });
     }
+
+    // Store or update email in localStorage array
+    const storedEmails = JSON.parse(localStorage.getItem("userEmails")) || [];
+    if (!storedEmails.includes(email)) {
+      storedEmails.push(email);
+      localStorage.setItem("userEmails", JSON.stringify(storedEmails));
+    }
   };
 
   return (
@@ -112,7 +133,11 @@ const TicketForm = ({ ticketId, initialData, onSubmit }) => {
           />
         </label>
       )}
-      <button className={styles.button} type="button" onClick={handleData}>
+      <button
+        className={styles.button}
+        type="button"
+        onClick={() => handleData()}
+      >
         Submit
       </button>
     </form>

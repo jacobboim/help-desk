@@ -1,3 +1,4 @@
+//trying an array of emails
 // pages/index.js
 "use client";
 
@@ -16,17 +17,44 @@ export default function Home() {
   const [selectedFilter, setSelectedFilter] = useState("All");
 
   useEffect(() => {
+    const userEmails = JSON.parse(localStorage.getItem("userEmails")) || [];
+
+    // Check if userEmails is empty and toast has not been shown
+    if (userEmails.length === 0 && !localStorage.getItem("welcomeToastShown")) {
+      toast.success(
+        "Welcome to the Help Desk! Please submit a ticket to get started."
+      );
+
+      // Set a flag in localStorage to indicate the toast has been shown
+      localStorage.setItem("welcomeToastShown", "true");
+    }
+  }, []);
+
+  useEffect(() => {
+    const userEmails = JSON.parse(localStorage.getItem("userEmails")) || [];
+
     const dbRef = ref(database, "tickets");
 
-    onValue(dbRef, (snapshot) => {
-      const data = snapshot.val();
-      const tickets = [];
-      for (let id in data) {
-        tickets.push({ id, ...data[id] });
+    onValue(
+      dbRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const userTickets = Object.keys(data)
+            .filter((key) => userEmails.includes(data[key].email))
+            .map((key) => ({ id: key, ...data[key] }));
+          setTickets(userTickets);
+          setFilteredTickets(userTickets); // Initially show all user tickets
+        } else {
+          setTickets([]);
+          setFilteredTickets([]);
+        }
+      },
+      (error) => {
+        console.error("Error fetching tickets: ", error);
+        toast.error("Error fetching tickets!");
       }
-      setTickets(tickets);
-      setFilteredTickets(tickets); // Initially show all tickets
-    });
+    );
   }, []);
 
   useEffect(() => {
@@ -44,10 +72,10 @@ export default function Home() {
       <Toaster />
       <h1 className={styles.heading}>Help Desk</h1>
       <TicketForm onSubmit={() => {}} />
-      <FilterButtons
+      {/* <FilterButtons
         selectedFilter={selectedFilter}
         setSelectedFilter={setSelectedFilter}
-      />
+      /> */}
       <TicketList tickets={filteredTickets} />
     </main>
   );

@@ -9,6 +9,130 @@
   padding: 20px;
 }
 
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  height: 30%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+.submitCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.closeButton:hover {
+  color: red;
+}
+
+/* Add styles for status buttons */
+.statusButtons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Style for each status button */
+.statusButton {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.statusButton:hover {
+  background-color: #0056b3;
+}
+
+/* Style for active status button */
+.activeButton {
+  background-color: #0056b3;
+}
+
+/* Style for submit button */
+.submitButton {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #218838;
+}
+
+/* Style for cancel button */
+.cancelButton {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: #c82333;
+}
+
+/* page.module.css */
+
+/* Add styles for answer modal */
+.answerInput {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+/* Adjust other styles as per your design */
+
+/* Adjust other styles as per your design */
+
 .heading {
   margin-bottom: 20px;
   font-family: "Arial", sans-serif;
@@ -194,6 +318,27 @@
   transform: scale(0.98);
 }
 
+.answerButton {
+  background-color: #007bff;
+  /* background-color: #b2b8bd; */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.answerButton:hover {
+  background-color: #0056b3;
+}
+
+.answerButton:active {
+  transform: scale(0.98);
+}
+
 .skeletonWrapper {
   display: flex;
   flex-direction: row;
@@ -205,7 +350,9 @@
 
 .editButtonContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   width: 100%;
   align-items: center;
@@ -243,5 +390,9 @@
   }
   .answer {
     max-height: 100px;
+  }
+
+  .modalContent {
+    width: 100%;
   }
 }

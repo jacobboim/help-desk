@@ -1,3 +1,5 @@
+//tring array of emails
+
 // components/TicketList.js
 "use client";
 
@@ -6,15 +8,44 @@ import styles from "../page.module.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { isMobile } from "react-device-detect";
-const TicketList = ({ tickets, onEdit }) => {
+import { ref, onValue } from "firebase/database";
+import { database } from "../firebaseConfig";
+import toast from "react-hot-toast";
+
+const TicketList = ({ onEdit }) => {
+  const [tickets, setTickets] = useState([]);
   const [showSkeleton, setShowSkeleton] = useState(true); // State to control skeleton visibility
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSkeleton(false); // Hide skeletons after 3 seconds
-    }, 1000);
+    const userEmails = JSON.parse(localStorage.getItem("userEmails")) || [];
+    // if (userEmails.length === 0) {
+    //   toast.error("No user emails found. Please submit a ticket first.");
+    //   setShowSkeleton(false);
+    //   return;
+    // }
 
-    return () => clearTimeout(timer); // Cleanup the timer on unmount or state change
+    const dbRef = ref(database, "tickets");
+
+    onValue(
+      dbRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const userTickets = Object.keys(data)
+            .filter((key) => userEmails.includes(data[key].email))
+            .map((key) => ({ id: key, ...data[key] }));
+          setTickets(userTickets);
+        } else {
+          setTickets([]);
+        }
+        setShowSkeleton(false); // Hide skeletons after data is loaded
+      },
+      (error) => {
+        console.error("Error fetching tickets: ", error);
+        toast.error("Error fetching tickets!");
+        setShowSkeleton(false); // Hide skeletons even if there's an error
+      }
+    );
   }, []);
 
   const statusStyles = {
